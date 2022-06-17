@@ -187,7 +187,7 @@ export default ({
         for (let i = 0; i < users.length; i++) {
           let res = await jsonp(`https://api.vk.com/method/friends.get?user_id=${users[i].id}&fields=bdate,sex&access_token=${tokenVk}&v=5.131`).promise;
           if (res.error) {
-            console.log('профиль с id ', users[i].id, ' является приватным, список друзей получить нельзя');
+            console.log(res.error.error_msg, res.error.request_params);
             break;
           }
           for (let fr of res.response.items) {
